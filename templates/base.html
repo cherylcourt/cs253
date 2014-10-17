@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+</head>
+
+<body>
+
+  <div class="top-area">
+    {% if user %}
+      {% if not newpage%}
+        {% if editing %}
+          <a class="top-link" href="{{pagename}}">view</a>
+        {% else %}
+          <a class="top-link" href="/_edit{{pagename}}">edit</a>
+        {% endif %}
+        |
+      {% endif %}
+    {% endif %}
+    {% if user %}
+      {{user.name}} (<a class="top-link" href="/logout?p={{pagename}}">logout</a>)
+    {% else %}
+      <a class="top-link" href="/login?p={{pagename}}">login</a>
+      |
+      <a class="top-link" href="/signup?p={{pagename}}">signup</a>
+    {% endif %}
+  </div>
+
+  <br><br>
+
+  <div id="content">
+  {% block content %}
+  {% endblock %}
+  </div>
+</body>
+
+</html>
+
